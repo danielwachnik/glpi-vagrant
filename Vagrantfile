@@ -17,7 +17,12 @@ Vagrant.configure("2") do |config|
     glpinode.vm.provider :vmware_desktop do |vmware|
       vmware.vmx["memsize"]	  = "4096"
       vmware.vmx["numvcpus"] = "2"
-	  end
+    end
+    glpinode.vm.provider :hyperv do |hv|
+       hv.memory = "4096"
+       hv.name = "glpi-node"
+       hv.cpus = "2"
+    end
     config.vm.provision "shell", inline: <<-SHELL
       sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config    
       service ssh restart
