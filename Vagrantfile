@@ -20,7 +20,8 @@ Vagrant.configure("2") do |config|
     end
     glpinode.vm.provider :hyperv do |hv|
        hv.memory = "4096"
-       hv.name = "glpi-node"
+       hv.maxmemory = "4096"
+       hv.vmname = "glpi-node"
        hv.cpus = "2"
     end
     config.vm.provision "shell", inline: <<-SHELL
